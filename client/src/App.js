@@ -1,7 +1,23 @@
+import { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Axios from 'axios'
 
 function App() {
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const submitRegister = () => {
+    Axios.post("http://localhost:3002/api/register", 
+    {
+      username: username,
+      password: password,
+    }).then(() => {
+      alert("success")
+    })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -11,12 +27,22 @@ function App() {
         <label>
           Username
         </label>
-        <input type="text" name="username" />
+        <input type="text" 
+          name="username" 
+          onChange={(e) => {
+            setUsername(e.target.value)
+          }}
+        />
         <label>
           Password
         </label>
-        <input type="text" name="password" />      
-        <button> Register </button>
+        <input type="text"
+          name="password"
+          onChange={(e) => {
+            setPassword(e.target.value)
+          }}
+         />      
+        <button onClick={submitRegister}> Register </button>
       </header>
     </div>
   );

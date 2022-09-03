@@ -19,8 +19,8 @@ app.post("/api/register", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  const sqlInsert =
-    "INSERT INTO Client (Username, Password, AccountType) VALUES (?,?, 1);";
+  const sqlInsert =`INSERT INTO Client (Username, AccountType, Area, Email)
+                    VALUES (?,?, 'Vaughan', 'maaneth@gmail.com');`;
   db.query(sqlInsert, [username, password], (err, result) => {
     console.log(result);
   });

@@ -73,3 +73,5 @@ CREATE TABLE Appointment (
     AppointmentArea varchar(255) NOT NULL,
     PRIMARY KEY (AppointmentId)
 );
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';

@@ -61,3 +61,15 @@ CREATE TABLE Notifications (
     MessageContext varchar(255),
     PRIMARY KEY (NotificationId)
 );
+
+-- Appointment
+CREATE TABLE Appointment (
+    AppointmentId int NOT NULL AUTO_INCREMENT,
+    FromClient int NOT NULL,
+    ToClient int NOT NULL,
+    FromTime timestamp NOT NULL,
+    EndTime timestamp NOT NULL,
+    ServiceId int NOT NULL,
+    AppointmentArea varchar(255) NOT NULL,
+    PRIMARY KEY (AppointmentId)
+);

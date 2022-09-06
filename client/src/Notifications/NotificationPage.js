@@ -3,6 +3,7 @@ import logo from '../logo.svg';
 import '../App.css';
 import Axios from 'axios'
 import * as Status from './NotificationStatus'
+import NotificationItem from './NotificationItem';
 
 function NotificationPage() {
 
@@ -30,18 +31,7 @@ function NotificationPage() {
         </label>
         {
           notificationList.map((val) => {
-            var from = ''
-
-            if(val.DisplayName != null) {
-              from = val.DisplayName
-            } else {
-              from = val.FirstName + val.LastName
-            }
-
-
-              return (
-                <h4>{from + ": " + val.MessageContext}</h4>
-              )
+            return <NotificationItem val={val} />
           })
         }
 

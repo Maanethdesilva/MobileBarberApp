@@ -11,7 +11,18 @@ function NotificationItem(Props) {
     from = val.FirstName + val.LastName;
   } 
 
-  return <h4>{from + ": " + val.MessageContext}</h4>;
+  return (
+  <div>
+    <li className="list-group-item d-flex justify-content-between align-items-center">
+      {from + ": " + val.MessageContext}
+      <div>
+        <button type="button" className="btn btn-primary">Accept</button>
+        <button type="button" className="btn btn-danger">Decline</button>
+        <button type="button" className="btn btn-warning">Pending</button>
+      </div>
+    </li>
+  </div>
+  );
 }
 
 export default NotificationItem;

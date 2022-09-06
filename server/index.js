@@ -26,6 +26,21 @@ app.post("/api/register", (req, res) => {
   });
 });
 
+app.get("/api/getNotifications", (req, res) => {
+  const client = req.query.clientId;
+
+  const sqlInsert =
+  `SELECT Notifications.*, FirstName, LastName, DisplayName FROM Notifications
+  inner join Client on Client.ClientId = Notifications.FromClient
+  left join Customer on Customer.ClientId = Notifications.FromClient
+  left join ServiceProvider on ServiceProvider.ClientId = Notifications.FromClient
+  WHERE ToClient = ?;`;
+
+  db.query(sqlInsert, [client], (err, result) => {
+    res.send(result);
+  });
+});
+
 db.connect(function (err) {
   if (err) {
     return console.error("error: " + err.message);

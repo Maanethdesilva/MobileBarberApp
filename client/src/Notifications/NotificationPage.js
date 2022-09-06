@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
-import logo from '../logo.svg';
 import '../App.css';
 import Axios from 'axios'
-import * as Status from './NotificationStatus'
 import NotificationItem from './NotificationItem';
 
 function NotificationPage() {

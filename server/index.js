@@ -32,7 +32,7 @@ app.get("/api/getNotifications", (req, res) => {
   const client = req.query.clientId;
 
   const sqlInsert =
-  `SELECT Notifications.*, FirstName, LastName, DisplayName FROM Notifications
+  `SELECT DISTINCT Notifications.*, FirstName, LastName, DisplayName FROM Notifications
   inner join Client on Client.ClientId = Notifications.FromClient
   left join Customer on Customer.ClientId = Notifications.FromClient
   left join ServiceProvider on ServiceProvider.ClientId = Notifications.FromClient

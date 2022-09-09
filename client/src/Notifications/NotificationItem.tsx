@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import React from "react";
 import * as Status from "./NotificationStatus"
-
-function NotificationItem(Props) {
+function NotificationItem(Props: any) {
   var from = "";
 
   const { val }  = Props;
@@ -22,16 +21,16 @@ function NotificationItem(Props) {
         val.Response != null ?
            <div className="buttonList">
             {
-              val.Response == Status.DECISON_UNMADE ?
+              val.Response === Status.DECISON_UNMADE ?
               <div>
                 <button type="button" className="btn btn-primary">Accept</button>
                 <button type="button" className="btn btn-danger">Decline</button>
               </div>
-              : val.Response == Status.ACCEPTED ?
+              : val.Response === Status.ACCEPTED ?
               <button type="button" className="btn btn-success" disabled>Accepted</button>
-              : val.Response == Status.DECLINED ?
+              : val.Response === Status.DECLINED ?
               <button type="button" className="btn btn-danger" disabled>Declined</button>
-              : val.Response == Status.PENDING ?
+              : val.Response === Status.PENDING ?
               <button type="button" className="btn btn-warning" disabled>Pending</button>
               : null
             }

@@ -4,7 +4,7 @@ VALUES
   ("Igor Walsh","Neu-Ulm",1,"a.auctor.non@icloud.net"),
   ("Malachi Holman","Sosnowiec",2,"a.nunc@icloud.ca"),
   ("Trevor Michael","Cape Town",1,"tempor.est@google.couk"),
-  ("Mona Reynolds","Garzón",2,"tincidunt.nibh@outlook.com");
+  ("Mona Reynolds","Garzón",2,"tincidunt.nibh@outlook.com"),
   ("Kiona Cummings","Navadwip",2,"ornare.egestas.ligula@icloud.edu"),
   ("Wanda Poole","Torreón",1,"elit.elit.fermentum@google.net"),
   ("Yoshio Durham","Feilding",1,"eget@aol.com"),

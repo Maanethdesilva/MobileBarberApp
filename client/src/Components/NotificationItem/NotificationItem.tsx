@@ -1,21 +1,20 @@
-import React from "react";
-import * as Status from "./NotificationStatus";
+import * as Status from './NotificationStatus'
 function NotificationItem(Props: any) {
-  var from = "";
+  var from = ''
 
-  const { val } = Props;
+  const { val } = Props
 
   if (val.DisplayName != null) {
-    from = val.DisplayName;
+    from = val.DisplayName
   } else {
-    from = val.FirstName + val.LastName;
+    from = val.FirstName + val.LastName
   }
 
   return (
     <div>
       <li className="list-group-item d-flex justify-content-between align-items-center">
         <div>
-          <b>{from + ": "}</b>
+          <b>{from + ': '}</b>
           {val.MessageContext}
         </div>
         {val.Response != null ? (
@@ -46,7 +45,7 @@ function NotificationItem(Props: any) {
         ) : null}
       </li>
     </div>
-  );
+  )
 }
 
-export default NotificationItem;
+export default NotificationItem

@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import {
-  GoogleMap,
-  useJsApiLoader,
-  MarkerF,
-  Autocomplete
-} from '@react-google-maps/api'
+import { useState, useEffect } from 'react'
+import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api'
 import { APIKEY } from './APIKey'
-import Geocode from 'react-geocode';
-import Axios from 'axios';
+import Geocode from 'react-geocode'
+import Axios from 'axios'
+import LocationSearchBox from '../LocationTextBox/LocationSearchBox'
 
 const containerStyle = {
   width: '800px',
@@ -23,43 +19,40 @@ const center = {
   lng: -79.5,
 }
 
-
-
 function Maps() {
+  const [refresh, setRefresh] = useState(1)
 
-  const [refresh, setRefresh] = useState(1);
-
-  const [map, setMap] = useState(null)
-  
   const [serviceProvider, setServiceProvider] = useState([])
   useEffect(() => {
-    Axios.get("http://localhost:3002/api/getServiceProviders").then((response) => {
-      console.log('client side', response.data);
-      setServiceProvider(response.data);
-    });
-  }, []);
+    Axios.get('http://localhost:3002/api/getServiceProviders').then(
+      (response) => {
+        console.log('client side', response.data)
+        setServiceProvider(response.data)
+      }
+    )
+  }, [])
 
   const getCoordinates = () => {
     Geocode.setApiKey(APIKEY.toString())
 
-
     serviceProvider.map((sp) => {
       Geocode.fromAddress(sp.Area).then(
-        (response) => { 
+        (response) => {
           const { lat, lng } = response.results[0].geometry.location
           pos.push({ lat: lat, lng: lng })
         },
         (error) => {
-          console.error(error) 
+          console.error(error)
         }
       )
-    }) 
-    setRefresh(refresh+1)
+      return null
+    })
+    setRefresh(refresh + 1)
 
     console.log('refreshed', refresh)
   }
 
-  const [pos, setPos] = useState([])
+  const [pos] = useState([])
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKEY.toString(),
@@ -72,18 +65,24 @@ function Maps() {
 
   return (
     <div>
-      <Autocomplete>
-        <input type="text"></input>
-      </Autocomplete>
+      <LocationSearchBox />
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={10}
         options={options}
       >
-        {pos.map((item) => <MarkerF key={item.lat} position={item}/>)}
+        {pos.map((item) => {
+          return <MarkerF key={item.lat} position={item} />
+        })}
       </GoogleMap>
-      <button type="submit" onClick={() => {getCoordinates(); setRefresh(refresh+1)}}></button>
+      <button
+        type="submit"
+        onClick={() => {
+          getCoordinates()
+          setRefresh(refresh + 1)
+        }}
+      ></button>
     </div>
   )
 }

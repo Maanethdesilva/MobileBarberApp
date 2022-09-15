@@ -35,10 +35,11 @@ function Maps() {
   const getCoordinates = () => {
     Geocode.setApiKey(APIKEY.toString())
 
-    serviceProvider.map((sp) => {
+    serviceProvider.map((sp: any) => {
       Geocode.fromAddress(sp.Area).then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location
+
           pos.push({ lat: lat, lng: lng })
         },
         (error) => {
@@ -49,7 +50,7 @@ function Maps() {
     })
   }
 
-  const [pos] = useState([])
+  const [pos] = useState<any[]>([])
 
   const { isLoaded } = useJsApiLoader({
     googleMapsApiKey: APIKEY.toString(),
@@ -70,7 +71,7 @@ function Maps() {
         options={options}
         onLoad={() => getCoordinates()}
       >
-        {pos.map((item) => {
+        {pos.map((item: any) => {
           return <MarkerF key={item.lat} position={item} />
         })}
       </GoogleMap>

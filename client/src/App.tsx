@@ -1,10 +1,11 @@
 import { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Axios from 'axios'
 
+
 function App() {
 
+  const logo = require("./logo.svg") as string;
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 

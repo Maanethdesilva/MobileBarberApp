@@ -47,9 +47,6 @@ function Maps() {
       )
       return null
     })
-    setRefresh(refresh + 1)
-
-    console.log('refreshed', refresh)
   }
 
   const [pos] = useState([])
@@ -71,6 +68,7 @@ function Maps() {
         center={center}
         zoom={10}
         options={options}
+        onLoad={() => getCoordinates()}
       >
         {pos.map((item) => {
           return <MarkerF key={item.lat} position={item} />
@@ -79,7 +77,6 @@ function Maps() {
       <button
         type="submit"
         onClick={() => {
-          getCoordinates()
           setRefresh(refresh + 1)
         }}
       ></button>

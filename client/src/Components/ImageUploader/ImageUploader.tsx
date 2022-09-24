@@ -1,10 +1,11 @@
 import { Widget } from '@uploadcare/react-widget'
+import { APIKEY } from './APIKey'
 
 function ImageUploader() {
   return (
     <p>
         <label htmlFor='file'>Your file:</label>{' '}
-        <Widget publicKey='f48e6bbbd22be563e8be' />
+        <Widget publicKey={APIKEY} />
     </p>
   )
 }

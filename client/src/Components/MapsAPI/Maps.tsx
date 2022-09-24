@@ -35,7 +35,7 @@ function Maps() {
   const getCoordinates = () => {
     Geocode.setApiKey(APIKEY.toString())
 
-    serviceProvider.map((sp: any) => {
+    serviceProvider.length > 0 && serviceProvider.map((sp: any) => {
       Geocode.fromAddress(sp.Area).then(
         (response) => {
           const { lat, lng } = response.results[0].geometry.location

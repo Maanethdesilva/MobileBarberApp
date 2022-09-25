@@ -59,6 +59,19 @@ app.get("/api/getNotifications", (req, res) => {
   });
 });
 
+//Getting Images
+app.get("/api/getImages", (req, res) => {
+  const client = req.query.clientId;
+
+  const sqlInsert =
+  `SELECT * From Images
+  WHERE ClientId = ?;`;
+
+  db.query(sqlInsert, [client], (err, result) => {
+    res.send(result);
+  });
+});
+
 //Getting Notifications
 app.get("/api/getServiceProviders", (req, res) => {
 

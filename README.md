@@ -24,6 +24,11 @@ Shows all the notifications and all the different types
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130621-35eea0ae-56c5-46a2-9316-53d40783425b.png">
 
+<b> Image Uploader </b>
+
+Uploads images to a user's portfolio or profile picture. Backend is still incomplete but images are being uploaded to UploadCare.
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130669-31396ec1-b13d-4443-a61a-11911ca4726d.png">
 
 # Environment Setup Instructions
 

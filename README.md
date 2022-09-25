@@ -22,7 +22,7 @@ Browsing through barbers in area on map view:
 
 Shows all the notifications and all the different types
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130621-35eea0ae-56c5-46a2-9316-53d40783425b.png">
+![image](https://user-images.githubusercontent.com/94875583/192130715-182907e1-9cc4-487f-b411-c902f38b09a5.png)
 
 <b> Image Uploader </b>
 

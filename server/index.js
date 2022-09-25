@@ -44,21 +44,6 @@ app.get("/api/getNotifications", (req, res) => {
   });
 });
 
-//Getting Notifications
-app.get("/api/getNotifications", (req, res) => {
-  const client = req.query.clientId;
-
-  const sqlInsert =
-  `SELECT DISTINCT Notifications.*, FirstName, LastName, DisplayName FROM Notifications
-  left join Customer on Customer.ClientId = Notifications.FromClient
-  left join ServiceProvider on ServiceProvider.ClientId = Notifications.FromClient
-  WHERE ToClient = ?;`;
-
-  db.query(sqlInsert, [client], (err, result) => {
-    res.send(result);
-  });
-});
-
 //Getting Images
 app.get("/api/getImages", (req, res) => {
   const client = req.query.clientId;

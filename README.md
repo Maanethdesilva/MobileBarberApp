@@ -18,6 +18,12 @@ Browsing through barbers in area on map view:
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130204-a6c17994-5fcd-45b7-bc5f-a26e4e805ac4.png">
 
+<b> Notification Page </b>
+
+Shows all the notifications and all the different types
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130621-35eea0ae-56c5-46a2-9316-53d40783425b.png">
+
 
 # Environment Setup Instructions
 

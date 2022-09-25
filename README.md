@@ -1,8 +1,23 @@
-# MobileBarberApp
+# Overview
+
+A mock Airbnb application that finds all available house call barbers in the area. Users can browse through barbers in their area and book appointments with available services. Additional information can be found below:
 
 User requirements: https://whimsical.com/requirements-8ja8KQvRBLi7XSaetjp6pZ
 
 Database Schema: https://whimsical.com/database-schema-Ciq3ZWBZrRnZWTzRWyXkPK
+
+# Demo
+
+<b> Customer Home Page </b>
+
+Browsing through barbers in area on grid view:
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130163-f60bdf80-2bc1-417c-bcac-a95e17971343.png">
+
+Browsing through barbers in area on map view:
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130204-a6c17994-5fcd-45b7-bc5f-a26e4e805ac4.png">
+
 
 # Environment Setup Instructions
 

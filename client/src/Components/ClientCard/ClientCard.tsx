@@ -49,7 +49,7 @@ class ClientCard extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <Card sx={{ width: 270 }}>
+      <Card sx={{ width: 320 }}>
         <CardActionArea>
           <CardMedia
             component="img"

@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton'
 import SearchIcon from '@mui/icons-material/Search'
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Button from '@mui/material/Button'
+import Grid from '@mui/material/Grid'
 
 function CustomerHomePage() {
   const [barberList, setBarberList] = useState([])
@@ -52,19 +53,34 @@ function CustomerHomePage() {
         </Paper>
       </Box>
 
-      <Container
-        sx={{
-          padding: '30px',
-        }}
-      >
+      <Container sx={{ textAlign: 'center', marginTop: '10px' }}>
         <ButtonGroup variant="outlined" aria-label="outlined button group">
           <Button onClick={() => setLayout(0)}>Grid</Button>
           <Button onClick={() => setLayout(1)}>Map</Button>
         </ButtonGroup>
-
-
-        { layout == 0 ? <ClientCardGrid barbers={barberList} /> : <Maps barbers={barberList}/>}
       </Container>
+
+      <Grid container
+      justifyContent='space-between'
+      alignItems='center'
+      >
+        { 
+        layout == 0 ? 
+          <ClientCardGrid barbers={barberList} maps={false} /> 
+          : <Grid 
+            container
+            
+          >
+              <Grid item xs={5.5}>
+                <ClientCardGrid barbers={barberList} maps={true} /> 
+              </Grid>
+              <Grid item xs={6.5}>
+                <Maps barbers={barberList}/>
+              </Grid>
+            </Grid>
+          
+        }
+      </Grid>
     </div>
   )
 }

@@ -3,14 +3,19 @@ import { GoogleMap, useJsApiLoader, MarkerF } from '@react-google-maps/api'
 import { APIKEY } from './APIKey'
 import Geocode from 'react-geocode'
 import { Button } from '@mui/material'
+import Container from '@mui/material/Container'
 
 const containerStyle = {
-  width: '800px',
-  height: '800px',
+  width: '100%',
+  height: '650px',
 }
 
 const options = {
-  clickableIcons: false,
+  disableDefaultUI: true,
+  clickableIcons: true,
+  fullscreenControl: false,
+  streetViewControl: false,
+  maptypeControl: false,
 }
 
 const center = {
@@ -50,13 +55,25 @@ function Maps({barbers}: any) {
     getCoordinates()
     return <h1>Loading</h1>
   }
-  
+
+
     return (
-      <div>
+      <Container sx={{
+        marginTop: '10px',
+        textAlign: 'center',
+        float: 'right',
+        padding: '0px',
+      }}>
          <Button
           type="submit"
           onClick={() => {
             setRefresh(refresh + 1)
+          }}
+          sx={{
+            position: 'absolute',
+            zIndex: '1',
+            backgroundColor: 'white',
+            marginTop: '10px',
           }}
         > Refresh </Button>
         <GoogleMap
@@ -71,7 +88,7 @@ function Maps({barbers}: any) {
           })}
         </GoogleMap>
        
-      </div>
+      </Container>
     )
 }
 

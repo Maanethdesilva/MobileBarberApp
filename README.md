@@ -18,6 +18,17 @@ Browsing through barbers in area on map view:
 
 <img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130204-a6c17994-5fcd-45b7-bc5f-a26e4e805ac4.png">
 
+<b> Notification Page </b>
+
+Shows all the notifications and all the different types
+
+![image](https://user-images.githubusercontent.com/94875583/192130715-182907e1-9cc4-487f-b411-c902f38b09a5.png)
+
+<b> Image Uploader </b>
+
+Uploads images to a user's portfolio or profile picture. Backend is still incomplete but images are being uploaded to UploadCare.
+
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130669-31396ec1-b13d-4443-a61a-11911ca4726d.png">
 
 # Environment Setup Instructions
 

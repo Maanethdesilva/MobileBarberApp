@@ -16,7 +16,7 @@ Browsing through barbers in area on grid view:
 
 Browsing through barbers in area on map view:
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192130204-a6c17994-5fcd-45b7-bc5f-a26e4e805ac4.png">
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/94875583/192421998-cc3116c2-51ff-4a35-902d-54a53f19c995.png">
 
 <b> Notification Page </b>
 

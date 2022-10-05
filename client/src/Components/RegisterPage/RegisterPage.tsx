@@ -5,10 +5,19 @@ import TextField from '@mui/material/TextField'
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import LocationSearchBox from '../LocationTextBox/LocationSearchBox'
+import Button from '@mui/material/Button'
+import { validateUsername, validatePassword } from './ClientSideValidation'
 
 function RegisterPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
+  const validateData = () => {
+    let valid = true
+    //Add validation here and then submit
+    validateUsername(username) ? alert('valid username'): alert('invalid username')
+    validatePassword(username) ? alert('valid password'): alert('invalid password')
+  }
 
   const submitRegister = () => {
     Axios.post('http://localhost:3002/api/register', {
@@ -49,7 +58,9 @@ function RegisterPage() {
       >
         <div>
           <h5>Email</h5>
-          <TextField required id="outlined-required" label="Email" />
+          <TextField required id="outlined-required" label="Email" onChange={(e) => {
+              setPassword(e.target.value)
+            }} />
           <br />
           <h5>Location</h5>
           <LocationSearchBox />
@@ -59,6 +70,9 @@ function RegisterPage() {
             label="Password"
             type="password"
             autoComplete="current-password"
+            onChange={(e) => {
+              setPassword(e.target.value)
+            }}
           />
           <br />
           <h5>Confirm Password</h5>
@@ -83,31 +97,36 @@ function RegisterPage() {
           </ToggleButton>
         </ToggleButtonGroup>
 
-        <div style={{
-        paddingTop: '20px'
-      }}>
-        {accountType === 'Barber' ? (
-          <div>
-            <h5>Barbershop Name</h5>
-            <TextField required id="outlined-required" />
-            <br />
-            <h5>Price per km</h5>
-            <TextField required id="outlined-required" />
-            <h5>Bio</h5>
-            <TextField required id="outlined-required" />
-            <br />
-          </div>
-        ) : accountType === 'Customer' ? (
-          <div>
-            <h5>First Name</h5>
-            <TextField required id="outlined-required" label="First Name" />
-            <br />
-            <h5>Last Name</h5>
-            <TextField required id="outlined-required" label="Last Name" />
-            <br />
-          </div>
-        ) : null}
+        <div
+          style={{
+            paddingTop: '20px',
+          }}
+        >
+          {accountType === 'Barber' ? (
+            <div>
+              <h5>Barbershop Name</h5>
+              <TextField required id="outlined-required" />
+              <br />
+              <h5>Price per km</h5>
+              <TextField required id="outlined-required" />
+              <h5>Bio</h5>
+              <TextField required id="outlined-required" />
+              <br />
+            </div>
+          ) : accountType === 'Customer' ? (
+            <div>
+              <h5>First Name</h5>
+              <TextField required id="outlined-required" label="First Name" />
+              <br />
+              <h5>Last Name</h5>
+              <TextField required id="outlined-required" label="Last Name" />
+              <br />
+            </div>
+          ) : null}
         </div>
+        <Button variant="contained" disableElevation onClick={validateData}>
+          Submit
+        </Button>
       </Box>
     </div>
   )

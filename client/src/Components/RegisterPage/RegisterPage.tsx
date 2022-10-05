@@ -6,29 +6,41 @@ import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import LocationSearchBox from '../LocationTextBox/LocationSearchBox'
 import Button from '@mui/material/Button'
-import { validateUsername, validatePassword } from './ClientSideValidation'
+import { validateData } from './ClientSideValidation'
 
 function RegisterPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
-  const validateData = () => {
-    let valid = true
-    //Add validation here and then submit
-    validateUsername(username) ? alert('valid username'): alert('invalid username')
-    validatePassword(username) ? alert('valid password'): alert('invalid password')
-  }
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [pricePerKM, setPricePerKM] = useState(0)
+  const [bio, setBio] = useState('')
+  const [displayName, setDisplayName] = useState('')
 
   const submitRegister = () => {
     Axios.post('http://localhost:3002/api/register', {
       username: username,
       password: password,
+      firstName: accountType === 'Customer' ? firstName : null,
+      lastName: accountType === 'Customer' ? lastName : null,
+      displayName: accountType === 'Barber' ? displayName : null,
+      pricePerKM: accountType === 'Barber' ? pricePerKM : null,
+      bio: accountType === 'Barber' ? bio : null,
     }).then(() => {
       alert('success')
     })
   }
 
   const [accountType, setAccountType] = useState<string | null>(null)
+
+  const submit = () => {
+    //If data isn't valid, add all the client side errors
+    if(validateData(username, password)){
+      submitRegister()
+    } else {
+      //Add UI validation 
+    }
+  }
 
   const handleAccountTypeSwitch = (
     event: React.MouseEvent<HTMLElement>,
@@ -59,7 +71,7 @@ function RegisterPage() {
         <div>
           <h5>Email</h5>
           <TextField required id="outlined-required" label="Email" onChange={(e) => {
-              setPassword(e.target.value)
+              setUsername(e.target.value)
             }} />
           <br />
           <h5>Location</h5>
@@ -105,26 +117,38 @@ function RegisterPage() {
           {accountType === 'Barber' ? (
             <div>
               <h5>Barbershop Name</h5>
-              <TextField required id="outlined-required" />
+              <TextField required id="outlined-required" 
+              onChange={(e) => {
+              setDisplayName(e.target.value)
+            }}/>
               <br />
               <h5>Price per km</h5>
-              <TextField required id="outlined-required" />
+              <TextField required id="outlined-required"  type="number"
+              onChange={(e) => {
+                setPricePerKM(4)
+              }}/>
               <h5>Bio</h5>
-              <TextField required id="outlined-required" />
+              <TextField required id="outlined-required" onChange={(e) => {
+              setBio(e.target.value)
+            }}/>
               <br />
             </div>
           ) : accountType === 'Customer' ? (
             <div>
               <h5>First Name</h5>
-              <TextField required id="outlined-required" label="First Name" />
+              <TextField required id="outlined-required" label="First Name" onChange={(e) => {
+              setFirstName(e.target.value)
+            }}/>
               <br />
               <h5>Last Name</h5>
-              <TextField required id="outlined-required" label="Last Name" />
+              <TextField required id="outlined-required" label="Last Name" onChange={(e) => {
+              setLastName(e.target.value)
+            }}/>
               <br />
             </div>
           ) : null}
         </div>
-        <Button variant="contained" disableElevation onClick={validateData}>
+        <Button variant="contained" disableElevation onClick={submit}>
           Submit
         </Button>
       </Box>

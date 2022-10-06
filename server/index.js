@@ -22,54 +22,54 @@ app.post('/api/register', (req, res) => {
   const location = req.body.location
 
   const sqlInsert = `INSERT INTO Client (AccountType, Area, Email)
-  VALUES (?, '?', '?');
-  
-  SELECT ClientId FROM Client 
-  ORDER BY 1 DESC
-  LIMIT 1;`
-
-  var clientId;
+  VALUES (?, ?, ?);`
 
   db.query(sqlInsert, [accountType, location, username], (err, result) => {
-    if(err) res.send(err)
-    console.log('result', result)
+    if (err) res.send(err)
     clientId = result
   })
 
-  console.log(clientId)
+  const clientIdQuery = `SELECT ClientId FROM Client 
+  WHERE Email = ?
+  ORDER BY 1 DESC
+  LIMIT 1;`
 
-  if (accountType == 1) {
-    const displayName = req.body.displayName
-    const pricePerKM = req.body.pricePerKM
-    const bio = req.body.bio
+  db.query(clientIdQuery, [username], (err, result) => {
+    if (err) res.send(err)
 
-    const barberInsert = `INSERT INTO ServiceProvider (DisplayName, ClientId, PricePerKM, Bio)
-  VALUES ('?', ?, ?, '?');`
+    if (accountType == 2) {
+      const displayName = req.body.displayName
+      const pricePerKM = req.body.pricePerKM
+      const bio = req.body.bio
 
-    db.query(
-      barberInsert,
-      [displayName, clientId, pricePerKM, bio],
-      (err, result) => {
-        if(err) res.send(err)
-        console.log(result)
-      }
-    )
-  } else if(accountType == 2){
-    const firstName = req.body.firstName
-    const lastName = req.body.lastName
+      const barberInsert = `INSERT INTO ServiceProvider (DisplayName, ClientId, PricePerKM, Bio)
+  VALUES (?, ?, ?, ?);`
 
-    const customerInsert = `INSERT INTO Customer (FirstName, LastName, ClientId)
-  VALUES ('?', '?', ?);`
+      db.query(
+        barberInsert,
+        [displayName, result[0].ClientId, pricePerKM, bio],
+        (err, result) => {
+          if (err) res.send(err)
+          res.send(result)
+        }
+      )
+    } else if (accountType == 1) {
+      const firstName = req.body.firstName
+      const lastName = req.body.lastName
 
-    db.query(
-      sqlInsert,
-      [firstName, lastName, clientId],
-      (err, result) => {
-        if(err) res.send(err)
-        console.log(result)
-      }
-    )
-  }
+      const customerInsert = `INSERT INTO Customer (FirstName, LastName, ClientId)
+  VALUES (?, ?, ?);`
+
+      db.query(
+        customerInsert,
+        [firstName, lastName, result[0].ClientId],
+        (err, result) => {
+          if (err) res.send(err)
+          res.send(result)
+        }
+      )
+    }
+  })
 })
 
 //Getting Notifications

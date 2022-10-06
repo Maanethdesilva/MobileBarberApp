@@ -21,11 +21,13 @@ function RegisterPage() {
     Axios.post('http://localhost:3002/api/register', {
       username: username,
       password: password,
+      accountType: accountType === 'Customer' ? 1: 2,
       firstName: accountType === 'Customer' ? firstName : null,
       lastName: accountType === 'Customer' ? lastName : null,
       displayName: accountType === 'Barber' ? displayName : null,
       pricePerKM: accountType === 'Barber' ? pricePerKM : null,
       bio: accountType === 'Barber' ? bio : null,
+      location: 'Maple Ridge, BC, Canada'
     }).then(() => {
       alert('success')
     })
